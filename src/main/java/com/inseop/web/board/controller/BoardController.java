@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.inseop.common.Pagination;
 import com.inseop.web.board.model.BoardVO;
+import com.inseop.web.board.model.ReplyVO;
 import com.inseop.web.board.service.BoardService;
 
 @Controller
@@ -65,7 +66,8 @@ public class BoardController {
   public String getBoardContent(Model model,@RequestParam("bid") int bid) 
                                  throws Exception {
     model.addAttribute("boardContent", boardService.getBoardContent(bid));
-    return "board/boardContent";
+    model.addAttribute("replyVO",new ReplyVO());    //new ReplyVO를 넘기는 이유는 
+    return "board/boardContent";                    //form 태그 때문이라고 예상
   }
   
   @RequestMapping(value = "/editForm", method = RequestMethod.GET)
@@ -84,6 +86,7 @@ public class BoardController {
     boardService.deleteBoard(bid);
     return "redirect:/board/getBoardList";
   }
+  
 
 //controllerAdvice 이용을 위한 주석
 //  @ExceptionHandler(RuntimeException.class)
