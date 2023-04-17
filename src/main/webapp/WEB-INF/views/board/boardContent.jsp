@@ -43,10 +43,8 @@
             data: {"bid" : "${boardContent.bid}"},
             dataType: 'json',
             success: function(result) {
-            	alert("z");
                	var htmls = "";
           			if(result.length < 1){
-          				alert("x")
           				htmls = "등록된 댓글이 없습니다.";
           				alert(htmls);
           			} else {
@@ -75,6 +73,40 @@
 		});	// Ajax end
 	}
 	
+	//댓글 저장 버튼 클릭 이벤트
+	$(document).on('click', '#btnReplySave', function(){
+		var replyContent = $('#content').val();
+		var replyReg_id = $('#reg_id').val();
+		var paramData = JSON.stringify(
+  										{
+  										 "content": replyContent,
+  										 "reg_id": replyReg_id,
+  										 "bid":'${boardContent.bid}'		//이것 주의
+  										}
+										);
+		var headers = {
+											"Content-Type" : "application/json",
+											"X-HTTP-Method-Override" : "POST"
+									};
+
+		$.ajax({
+			url: "${contextPath}/restBoard/saveReqly", 
+			headers : headers, 
+			data : paramData, 
+			type : 'POST', 
+			dataType : 'text', 
+			success: function(result){
+									showReplyList();
+          				$('#content').val('');
+          				$('#reg_id').val('');
+								},
+			error: function(error){
+				console.log("에러 : " + error);
+			}
+		});
+	});	
+//댓글 저장 버튼 클릭이벤트 종료
+  
 </script>
 
 </head>

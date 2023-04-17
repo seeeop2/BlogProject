@@ -33,6 +33,7 @@ public class BoardServiceImpl implements BoardService {
     BoardVO boardVO = new BoardVO();
 
     boardDAO.updateViewCnt(bid);
+    boardVO = boardDAO.getBoardContent(bid);
 //    
 //    boardVO.setBid(bid);
 //    boardVO.setCate_cd("1111111111111111111111111111111111111111111111111111111111");
@@ -59,6 +60,8 @@ public class BoardServiceImpl implements BoardService {
   // 댓글 리스트
   @Override
   public List<ReplyVO> getReplyList(int bid) throws Exception {
+    System.out.println("보라1 " +bid);
+    System.out.println("보라2 " + boardDAO.getReplyList(bid));
     return boardDAO.getReplyList(bid);
   }
 

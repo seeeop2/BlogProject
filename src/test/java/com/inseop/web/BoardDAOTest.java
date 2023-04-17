@@ -25,6 +25,7 @@ import com.inseop.common.Pagination;
 import com.inseop.web.board.dao.BoardDAO;
 
 import com.inseop.web.board.model.BoardVO;
+import com.inseop.web.board.model.ReplyVO;
 
 
 
@@ -106,7 +107,7 @@ public class BoardDAOTest {
 
   
 
-  @Test 
+  @Test @Ignore
   public void testInsertBoard() throws Exception {
 
     BoardVO boardVO = new BoardVO();
@@ -210,6 +211,19 @@ public class BoardDAOTest {
       logger.info("\n 게시물 조회수 업데이트 실패");
 
     }
+
+  }
+  
+  @Test 
+  public void getReplyList() throws Exception {
+
+    List<ReplyVO> list = boardDAO.getReplyList(1);
+
+      logger.info("\n list : " + list);
+      
+      for(Object object : list) {
+        logger.info("\n list : " + object);
+      }
 
   }
 

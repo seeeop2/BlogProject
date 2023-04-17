@@ -65,7 +65,9 @@ public class BoardController {
   @RequestMapping(value = "/getBoardContent", method = RequestMethod.GET)
   public String getBoardContent(Model model,@RequestParam("bid") int bid) 
                                  throws Exception {
+    System.out.println("bid는 이것이다 잘 봐라"+bid);
     model.addAttribute("boardContent", boardService.getBoardContent(bid));
+    System.out.println("이거는 ?" +boardService.getBoardContent(bid).toString());
     model.addAttribute("replyVO",new ReplyVO());    //new ReplyVO를 넘기는 이유는 
     return "board/boardContent";                    //form 태그 때문이라고 예상
   }
