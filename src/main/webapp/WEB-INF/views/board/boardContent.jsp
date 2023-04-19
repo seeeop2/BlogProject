@@ -4,6 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:url var="saveReplyURL" value="/restBoard/saveReply" />
+<c:url var="updateReplyURL" value="/restBoard/updateReply" />
+<c:url var="deleteReplyURL" value="/restBoard/deleteReply" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +111,73 @@
 	});	
 //댓글 저장 버튼 클릭이벤트 종료
   
+
+	function fn_editReply(rid, reg_id, content) {
+		var htmls = "";
+		htmls += '<div class="media text-muted pt-3" id="rid' + rid + '">';
+		htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
+		htmls += '<title>Placeholder</title>';
+		htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
+		htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';
+		htmls += '</svg>';
+		htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+		htmls += '<span class="d-block">';
+		htmls += '<strong class="text-gray-dark">' + reg_id + '</strong>';
+		htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+		htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + rid
+				+ ', \'' + reg_id + '\')" style="padding-right:5px">저장</a>';
+		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
+		htmls += '</span>';
+		htmls += '</span>';
+		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
+		htmls += content;
+		htmls += '</textarea>';
+		htmls += '</p>';
+		htmls += '</div>';
+		$('#rid' + rid).replaceWith(htmls);
+		$('#rid' + rid + ' #editContent').focus();
+	}
+	
+	function fn_updateReply(rid, reg_id){
+		var replyEditContent = $('#editContent').val();
+		var paramData = JSON.stringify({"content": replyEditContent
+				, "rid": rid
+		});
+		var headers = {"Content-Type" : "application/json" , 
+									 "X-HTTP-Method-Override" : "POST"
+									 };
+
+		$.ajax({
+			url: "${updateReplyURL}",
+			headers : headers,
+			data : paramData,
+			type : 'POST',
+			dataType : 'text',
+			success: function(result){
+                                console.log(result);
+				showReplyList();
+			},
+			error: function(error){
+				console.log("에러 : " + error);
+			}
+		});
+	}
+	
+	function fn_deleteReply(rid){
+		var paramData = {"rid": rid};
+		$.ajax({
+			url: "${deleteReplyURL}",
+			data : paramData,
+			type : 'POST',
+			dataType : 'text',
+			success: function(result){
+				showReplyList();
+			},
+			error: function(error){
+				console.log("에러 : " + error);
+			}
+		});
+	}
 </script>
 
 </head>
