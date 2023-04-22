@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>board</title>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 <script>
   $(document).on('click', '#btnSave', function(e) {
     e.preventDefault();
@@ -42,6 +43,7 @@
       <form:form name="form" id="form" role="form" modelAttribute="boardVO" 
                  method="post" action="${pageContext.request.contextPath}/board/saveBoard">
         <form:hidden path="bid"/>
+        <form:hidden path="cate_cd" value="1"/>
         <input type="hidden" name="mode">
                  
         <div class="mb-3">
@@ -51,7 +53,7 @@
         </div>
         <div class="mb-3">
           <label for="reg_id">작성자</label> 
-          <form:input path="reg_id" class="form-control" id="reg_id"
+          <form:input path="reg_id" class="form-control" id="	"
                  placeholder="이름을 입력해 주세요" />
         </div>
         <div class="mb-3">
@@ -71,5 +73,7 @@
       </div>
     </div>
   </article>
+  
+  <script src="${pageContext.request.contextPath}/resources/common/js/ckeditor.js"></script>
 </body>
 </html>

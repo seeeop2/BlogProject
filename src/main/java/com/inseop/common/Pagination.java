@@ -92,7 +92,7 @@ public class Pagination {
     this.listCnt = listCnt;
 
     //전체 페이지수                   전체 게시물의 개수     초기값 목록개수:10
-    this.pageCnt = (int) Math.ceil(listCnt       /   listSize);
+    this.pageCnt = (int) Math.ceil((double)listCnt       /   listSize); //마지막 페이지 페이징이 안되어서 (double)추가했다.
 
     //시작 페이지        현재 페이지 범위     초기값 페이지범위:10
     this.startPage = (range - 1)   *   rangeSize + 1 ;
