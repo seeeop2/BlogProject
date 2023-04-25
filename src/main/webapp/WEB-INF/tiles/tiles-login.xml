@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+  <!-- login -->
+  <definition name="login-layout" template="/WEB-INF/tiles/layouts/login_layout.jsp">
+    <put-attribute name="tile_header" value="/WEB-INF/views/layout/header.jsp" />
+    <put-attribute name="tile_body" value="" />
+  </definition>
+  
+  <definition name="/login/*" extends="login-layout"> <!-- 앞에 슬래쉬... 주의 -->
+  
+    <put-attribute name="tile_body" value="/WEB-INF/views/login/{1}.jsp" />
+    <!--만약 Controller 리턴 뷰 값이 login/index이면 {1}에 index가 대입 -->
+    <!--만약 3차주소까지 있다면? -->
+    <!--login/{1}/{2}.jsp로 작성  -->
+  </definition>
+
+</tiles-definitions>
