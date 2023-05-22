@@ -25,9 +25,7 @@ public class RestBoardController {
 
   @RequestMapping(value = "/getReplyList", method = RequestMethod.POST)
   public List<ReplyVO> getReplyList(@RequestParam("bid") int bid) throws Exception {
-    System.out.println(bid);
     List<ReplyVO> list = boardService.getReplyList(bid);
-    System.out.println(list);
     return list;
   }
   

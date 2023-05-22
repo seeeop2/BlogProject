@@ -65,7 +65,6 @@ public class BoardController {
   @RequestMapping(value = "/getBoardContent", method = RequestMethod.GET)
   public String getBoardContent(Model model,@RequestParam("bid") int bid) 
                                  throws Exception {
-    System.out.println("bid는 이것이다 잘 봐라"+bid);
     model.addAttribute("boardContent", boardService.getBoardContent(bid));
 //    System.out.println("이거는 ?" +boardService.getBoardContent(bid).toString());
   /*계속해서 view_cnt 값이 + 2 증가하는 것을 발견.
