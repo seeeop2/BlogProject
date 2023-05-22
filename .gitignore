@@ -164,3 +164,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,windows,macos,eclipse
+
+#인텔리제이에서 작업하며 추가
+/.idea/

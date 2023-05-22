@@ -40,7 +40,6 @@
 	
 	//댓글 리스트
 	function showReplyList(){
-		alert("${boardContent.bid}");
 		$.ajax({
             type: 'POST',
             url: "${contextPath}/restBoard/getReplyList",
@@ -50,7 +49,6 @@
                	var htmls = "";
           			if(result.length < 1){
           				htmls = "등록된 댓글이 없습니다.";
-          				alert(htmls);
           			} else {
                   $(result).each(function(){
                    htmls += '<div class="media text-muted pt-3" id="rid' + this.rid + '">';

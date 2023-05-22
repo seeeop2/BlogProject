@@ -67,11 +67,18 @@ public class BoardController {
                                  throws Exception {
     System.out.println("bid는 이것이다 잘 봐라"+bid);
     model.addAttribute("boardContent", boardService.getBoardContent(bid));
-    System.out.println("이거는 ?" +boardService.getBoardContent(bid).toString());
+//    System.out.println("이거는 ?" +boardService.getBoardContent(bid).toString());
+  /*계속해서 view_cnt 값이 + 2 증가하는 것을 발견.
+  로직에서는 분명 view_cnt + 1 인 것을 중복 확인 했는데 계속 +2씩 상승.
+
+  원인은 윗 줄 주석인 System.out.println("이거는 ?" +boardService.getBoardContent(bid).toString());
+  여기서 한번 더 로직을 타서 +2가 증가하고 있었던 것임.
+  *  */
+
     model.addAttribute("replyVO",new ReplyVO());    //new ReplyVO를 넘기는 이유는 
     return "board/boardContent";                    //form 태그 때문이라고 예상
   }
-  
+
   @RequestMapping(value = "/editForm", method = RequestMethod.GET)
   public String editForm(@RequestParam("bid") int bid, 
                          @RequestParam("mode") String mode, 
