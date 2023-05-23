@@ -33,11 +33,11 @@ public class BoardServiceImpl implements BoardService {
     BoardVO boardVO = new BoardVO();
 
     boardDAO.updateViewCnt(bid);
-    boardVO = boardDAO.getBoardContent(bid);
+//    boardVO = boardDAO.getBoardContent(bid);
 //    
-//    boardVO.setBid(bid);
-//    boardVO.setCate_cd("1111111111111111111111111111111111111111111111111111111111");
-//    boardDAO.updateBoard(boardVO);
+    boardVO.setBid(bid);
+    boardVO.setCate_cd("1111111111111111111111111111111111111111111111111111111111");
+    boardDAO.updateBoard(boardVO);
 ////    return boardDAO.getBoardContent(bid);
     return boardVO;
   }
