@@ -40,8 +40,10 @@
   
   
   <context:component-scan base-package="com.inseop.web" />
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <!--xml방식 트랜잭션은 불가능했지만, 어노테이션 방식 트랜잭션은 성공
+        윗 줄이 없으니 불가능... 윗 줄 꼭 확인하자-->
 </beans:beans>
 
 

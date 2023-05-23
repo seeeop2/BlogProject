@@ -27,6 +27,7 @@ public class BoardServiceImpl implements BoardService {
     return boardDAO.insertBoard(boardVO);
   }
 
+  @Transactional
   @Override
   public BoardVO getBoardContent(int bid) throws Exception {
     
